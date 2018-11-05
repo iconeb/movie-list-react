@@ -1,0 +1,24 @@
+.predict-list-page {
+  height: 100%;
+}
+
+.predict-list-page h1 {
+  margin: 0;
+}
+
+.predict-list-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.predict-list-page-actions {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.predict-list-page .button + .button {
+  margin-left: 8px;
+}

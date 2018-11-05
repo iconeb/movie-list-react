@@ -1,33 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 
-import './MovieListPage.css';
+import './PredictListPage.css';
 
-import Button from '../../components/Button';
 import { MovieList, MovieListItem } from '../../components/MovieList';
 
-import {
-	deleteListRequest,
-} from '../../store/movieList';
-
-class MovieListPage extends React.Component {
+class PredictListPage extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       movies: []
     };
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-  }
-
-  handleDeleteClick() {
-	    this.props.deleteList();
   }
 
   async componentDidMount() {
     const movieListId = this.props.match.params.id;
     try {
-      const response = await axios.get(`/api/movie-lists/${movieListId}`);
+      const response = await axios.get(`/api/movie-lists/predict/${movieListId}`);
       this.setState({
     	id: response.data.id,
     	title: response.data.title,
@@ -47,13 +37,10 @@ class MovieListPage extends React.Component {
     ));
 
     return (
-      <div className="movie-list-page">
+      <div className="predict-list-page">
         <div className="header">
-          <h1>My List: {list}</h1>
+          <h1>Prediction for: {list}{id}</h1>
         </div>
-        <div className="movie-list-page-actions">
-          <Button to={ "/lists/predict/" + id }>Predict</Button>
-    	</div>
         <MovieList>
           {movies}
         </MovieList>
@@ -63,8 +50,4 @@ class MovieListPage extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => ({
-	  deleteList: () => dispatch(deleteListRequest())
-	});
-
-export default MovieListPage;
+export default PredictListPage;
